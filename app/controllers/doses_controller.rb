@@ -3,6 +3,7 @@ class DosesController < ApplicationController
 
   def new
     @dose = @cocktail.doses.new
+    @ingredients = Ingredient.all
   end
 
   def create
@@ -17,6 +18,7 @@ class DosesController < ApplicationController
   def destroy
     @dose = Dose.find(params[:id])
     @dose.destroy
+    redirect_to request.referer
   end
 
   private
