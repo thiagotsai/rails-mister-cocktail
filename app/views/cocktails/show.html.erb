@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
+    <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
       <h2><%= @cocktail.name.capitalize %></h2>
       <hr>
       <% @cocktail.doses.reject(&:new_record?).each do |d| %>
@@ -11,7 +11,7 @@
       <% end %>
       <hr>
       <%# link_to "New Dose", new_cocktail_dose_path(@cocktail) , class: "btn btn-primary" %>
-      <h4>New Dose for <%= @cocktail.name %></h4>
+      <h4>New Dose</h4>
       <%= simple_form_for [@cocktail, @dose] do |f| %>
       <%= f.input :description, placeholder: "Description Eg. 100ml" %>
       <%= f.input :ingredient_id, collection: @ingredients, prompt: "Select a ingredient" %>

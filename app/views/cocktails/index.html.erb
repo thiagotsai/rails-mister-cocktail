@@ -1,18 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
+    <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
       <h2>Cocktails (<%= @cocktails.count %>)</h2>
       <hr>
       <%= link_to "New Cocktail", new_cocktail_path, class: "btn btn-primary" %>
       <hr>
+      <% @cocktails.each do |c| %>
       <div>
-        <% @cocktails.each do |c| %>
-        <div>
-          <%= link_to c.name.capitalize, cocktail_path(c) %>
-        </div>
-        <hr>
-        <% end %>
+        <%= link_to c.name.capitalize, cocktail_path(c) %>
       </div>
+      <hr>
+      <% end %>
     </div>
   </div>
 </div>
