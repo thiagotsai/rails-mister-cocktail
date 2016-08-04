@@ -7,11 +7,13 @@ class DosesController < ApplicationController
   end
 
   def create
+    @ingredients = Ingredient.all
     @dose = @cocktail.doses.new(dose_params)
     if @dose.save
       redirect_to cocktail_path(@cocktail)
     else
-      render :new
+      #render :new
+      render '/cocktails/show'
     end
   end
 
