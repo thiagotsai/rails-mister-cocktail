@@ -8,7 +8,7 @@
       <div>
         <% @cocktails.each do |c| %>
         <div>
-          <%= link_to c.name, cocktail_path(c) %>
+          <%= link_to c.name.capitalize, cocktail_path(c) %>
         </div>
         <hr>
         <% end %>

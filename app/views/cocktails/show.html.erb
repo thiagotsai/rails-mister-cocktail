@@ -1,16 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-4 col-xs-offset-4">
-      <h2><%= @cocktail.name %></h2>
-       <hr>
-      <% @cocktail.doses.each do |d| %>
-        <div>
-          <%= d.description %> - <%= d.ingredient.name %>
-          <%= link_to "Delete", dose_path(d), method: :delete %>
-        </div>
+      <h2><%= @cocktail.name.capitalize %></h2>
+      <hr>
+      <% @cocktail.doses.reject(&:new_record?).each do |d| %>
+      <div style="display: flex; justify-content: space-between;">
+        <%= d.description %> - <%= d.ingredient.name %>
+        <%= link_to "Delete", dose_path(d), method: :delete %>
+      </div>
       <% end %>
       <hr>
-      <%= link_to "New Dose", new_cocktail_dose_path(@cocktail) , class: "btn btn-primary" %>
+      <%# link_to "New Dose", new_cocktail_dose_path(@cocktail) , class: "btn btn-primary" %>
+      <h4>New Dose for <%= @cocktail.name %></h4>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+      <%= f.input :description, placeholder: "Description Eg. 100ml" %>
+      <%= f.input :ingredient_id, collection: @ingredients, prompt: "Select a ingredient" %>
+      <%# f.select :ingredient_id, options_from_collection_for_select(Ingredient.all, 'id', 'name') %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
       <hr>
       <div>
         <%= link_to "Back", cocktails_path %>
