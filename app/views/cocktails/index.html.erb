@@ -7,6 +7,7 @@
       <hr>
       <% @cocktails.each do |c| %>
       <div>
+        <%= image_tag c.photo.url(:thumbnail) unless c.photo.nil? %>
         <%= link_to c.name.capitalize, cocktail_path(c) %>
       </div>
       <hr>
